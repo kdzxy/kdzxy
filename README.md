@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<img src="./nhisimiya.jfif" width="200">
+<img src="./nhisimiya.jfif" width="500">
 
 </div>
 <div align="center">
