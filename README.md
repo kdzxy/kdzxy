@@ -152,11 +152,11 @@ OUTPUT
 
 ---
 
-## `github stats`
+## `waifu`
 
 <div align="center">
 
-<img src="./nhisimiya.jfif" width="500">
+<img src="./walp.jfif" width="600">
 
 </div>
 
