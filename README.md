@@ -1,4 +1,11 @@
 # `kdzxy`
+<div align="center">
+
+### my bini
+
+https://github.com/user-attachments/assets/77d74744-46f3-427d-922a-a1be3d089ecf
+
+</div>
 
 <div align="center">
 
