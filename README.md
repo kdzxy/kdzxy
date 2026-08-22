@@ -1,270 +1,75 @@
 # `kdzxy`
+<div align="center">
 
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KDZXY LCD</title>
+<svg width="700" height="260" viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg">
 
-<style>
-    * {
-        box-sizing: border-box;
-    }
+<rect width="700" height="260" rx="18" fill="#050807"/>
 
-    body {
-        margin: 0;
-        min-height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: #050807;
-        font-family: monospace;
-    }
+<rect x="20" y="20" width="660" height="220"
+      rx="12"
+      fill="#07100c"
+      stroke="#18352a"
+      stroke-width="2"/>
 
-    .lcd {
-        width: min(900px, 94vw);
-        padding: 35px;
-        border: 2px solid #18352a;
-        border-radius: 14px;
-        background:
-            radial-gradient(circle at center, #0b1712 0%, #050807 75%);
-        box-shadow:
-            0 0 30px rgba(0, 255, 120, 0.05),
-            inset 0 0 30px rgba(0, 255, 120, 0.03);
-        overflow: hidden;
-    }
+<!-- LCD PIXELS -->
 
-    .screen {
-        display: grid;
-        grid-template-columns: repeat(45, 1fr);
-        grid-template-rows: repeat(18, 1fr);
-        gap: 5px;
-        aspect-ratio: 45 / 18;
-    }
+<g fill="#0c1914" stroke="#142b22">
 
-    .pixel {
-        aspect-ratio: 1;
-        border-radius: 3px;
-        background: #0c1914;
-        border: 1px solid #142b22;
-        box-shadow: inset 0 0 3px rgba(0, 255, 120, 0.04);
-        transition:
-            background 0.12s ease,
-            box-shadow 0.12s ease,
-            transform 0.12s ease;
-    }
+<rect x="70" y="55" width="18" height="18"/>
+<rect x="94" y="55" width="18" height="18"/>
+<rect x="118" y="55" width="18" height="18"/>
+<rect x="142" y="55" width="18" height="18"/>
+<rect x="166" y="55" width="18" height="18"/>
+<rect x="190" y="55" width="18" height="18"/>
+<rect x="214" y="55" width="18" height="18"/>
+<rect x="238" y="55" width="18" height="18"/>
+<rect x="262" y="55" width="18" height="18"/>
+<rect x="286" y="55" width="18" height="18"/>
+<rect x="310" y="55" width="18" height="18"/>
+<rect x="334" y="55" width="18" height="18"/>
+<rect x="358" y="55" width="18" height="18"/>
+<rect x="382" y="55" width="18" height="18"/>
+<rect x="406" y="55" width="18" height="18"/>
+<rect x="430" y="55" width="18" height="18"/>
+<rect x="454" y="55" width="18" height="18"/>
+<rect x="478" y="55" width="18" height="18"/>
+<rect x="502" y="55" width="18" height="18"/>
+<rect x="526" y="55" width="18" height="18"/>
+<rect x="550" y="55" width="18" height="18"/>
+<rect x="574" y="55" width="18" height="18"/>
+<rect x="598" y="55" width="18" height="18"/>
+<rect x="622" y="55" width="18" height="18"/>
 
-    .pixel.active {
-        background: #21e879;
-        border-color: #42ff91;
-        box-shadow:
-            0 0 7px rgba(33, 232, 121, 0.7),
-            0 0 16px rgba(33, 232, 121, 0.25),
-            inset 0 0 5px rgba(255, 255, 255, 0.25);
-        transform: scale(1.04);
-    }
+</g>
 
-    .pixel.fade {
-        background: #123b29;
-        border-color: #1b7047;
-        box-shadow: 0 0 5px rgba(33, 232, 121, 0.2);
-    }
+<!-- KDZXY -->
 
-    .label {
-        margin-top: 18px;
-        text-align: center;
-        color: #42ff91;
-        font-size: 13px;
-        letter-spacing: 4px;
-        opacity: 0.7;
-    }
+<text
+x="350"
+y="175"
+text-anchor="middle"
+font-family="monospace"
+font-size="72"
+font-weight="bold"
+letter-spacing="12"
+fill="#21e879">
+KDZXY
+</text>
 
-    @media (max-width: 600px) {
-        .lcd {
-            padding: 15px;
-        }
+<text
+x="350"
+y="215"
+text-anchor="middle"
+font-family="monospace"
+font-size="12"
+letter-spacing="5"
+fill="#42ff91">
+LCD // SYSTEM ONLINE
+</text>
 
-        .screen {
-            gap: 2px;
-        }
-
-        .pixel {
-            border-radius: 1px;
-        }
-    }
-</style>
-</head>
-
-<body>
-
-<div class="lcd">
-
-    <div class="screen" id="screen"></div>
-
-    <div class="label">
-        LCD // KDZXY
-    </div>
+</svg>
 
 </div>
-
-<script>
-const screen = document.getElementById("screen");
-
-const COLS = 45;
-const ROWS = 18;
-
-const pixels = [];
-
-for (let i = 0; i < COLS * ROWS; i++) {
-    const pixel = document.createElement("div");
-    pixel.className = "pixel";
-
-    screen.appendChild(pixel);
-    pixels.push(pixel);
-}
-
-const font = {
-    K: [
-        "10001",
-        "10010",
-        "10100",
-        "11000",
-        "10100",
-        "10010",
-        "10001"
-    ],
-
-    D: [
-        "11110",
-        "10001",
-        "10001",
-        "10001",
-        "10001",
-        "10001",
-        "11110"
-    ],
-
-    Z: [
-        "11111",
-        "00001",
-        "00010",
-        "00100",
-        "01000",
-        "10000",
-        "11111"
-    ],
-
-    X: [
-        "10001",
-        "10001",
-        "01010",
-        "00100",
-        "01010",
-        "10001",
-        "10001"
-    ],
-
-    Y: [
-        "10001",
-        "10001",
-        "01010",
-        "00100",
-        "00100",
-        "00100",
-        "00100"
-    ]
-};
-
-const word = "KDZXY";
-
-const startRow = 5;
-const startCol = 8;
-
-const activePixels = [];
-
-word.split("").forEach((letter, letterIndex) => {
-
-    const pattern = font[letter];
-
-    const letterStartCol = startCol + letterIndex * 7;
-
-    pattern.forEach((row, r) => {
-
-        [...row].forEach((value, c) => {
-
-            if (value === "1") {
-
-                const gridRow = startRow + r;
-                const gridCol = letterStartCol + c;
-
-                const index =
-                    gridRow * COLS + gridCol;
-
-                activePixels.push(index);
-            }
-
-        });
-
-    });
-
-});
-
-function clearScreen() {
-    pixels.forEach(pixel => {
-        pixel.classList.remove("active");
-        pixel.classList.remove("fade");
-    });
-}
-
-async function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-async function animate() {
-
-    while (true) {
-
-        clearScreen();
-
-        await sleep(500);
-
-        /*
-         * Kotak hijau muncul satu per satu
-         */
-        for (const index of activePixels) {
-
-            pixels[index].classList.add("active");
-
-            await sleep(28);
-        }
-
-        /*
-         * Tulisan KDZXY bertahan sebentar
-         */
-        await sleep(1400);
-
-        /*
-         * Efek redup sebelum menghilang
-         */
-        activePixels.forEach(index => {
-            pixels[index].classList.remove("active");
-            pixels[index].classList.add("fade");
-        });
-
-        await sleep(350);
-
-        clearScreen();
-
-        await sleep(500);
-    }
-}
-
-animate();
-</script>
-
-</body>
-</html>
 
 <div align="center">
 
