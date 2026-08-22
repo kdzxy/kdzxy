@@ -9,7 +9,7 @@
 ```text
 ╔══════════════════════════════════════════════════════════════╗
 ║                                                              ║
-║                  K D Z X Y  //  D E V                       ║
+║                  K D Z X Y  //  D E V                        ║
 ║                                                              ║
 ║        BOT DEVELOPER  •  SECURITY  •  AUTOMATION             ║
 ║                                                              ║
@@ -35,9 +35,7 @@ kdzxy
 $ cat about.txt
 
 Bot Developer
-Security Researcher
 Bug Hunter
-Automation Enthusiast
 Linux User
 Open Source Explorer
 ```
@@ -53,16 +51,16 @@ I enjoy building things, breaking things in controlled environments, understandi
 ```text
 ┌─────────────────────────────────────────────────────────────┐
 │                                                             │
-│  🤖  BOT DEVELOPMENT                                        │
+│  >  BOT DEVELOPMENT                                         │
 │      WhatsApp bots • Automation • APIs                      │
 │                                                             │
-│  🔐  SECURITY                                                │
+│  >  SECURITY                                                │
 │      Bug hunting • Web security • Research                  │
 │                                                             │
-│  🌐  WEB DEVELOPMENT                                        │
-│      Frontend • Backend • REST APIs                          │
+│  >  WEB DEVELOPMENT                                         │
+│      Frontend • Backend • REST APIs                         │
 │                                                             │
-│  🐧  LINUX                                                   │
+│  >  LINUX                                                   │
 │      CLI • Servers • Development environments               │
 │                                                             │
 └─────────────────────────────────────────────────────────────┘
@@ -91,7 +89,7 @@ I enjoy building things, breaking things in controlled environments, understandi
 
 ## `projects`
 
-### 🤖 WhatsApp Bot
+###  WhatsApp Bot
 
 Developing WhatsApp automation projects using Node.js.
 
@@ -107,7 +105,7 @@ Developing WhatsApp automation projects using Node.js.
 
 ---
 
-### 🔐 Security Research
+###  Security Research
 
 Learning and experimenting with application security in authorized environments.
 
@@ -124,7 +122,7 @@ Learning and experimenting with application security in authorized environments.
 
 ---
 
-### ⚙️ Automation
+###  Automation
 
 Building small tools that automate repetitive tasks and simplify development workflows.
 
@@ -145,29 +143,7 @@ OUTPUT
 
 ---
 
-## `demo`
 
-<div align="center">
-
-### Project Showcase
-
-**Video demonstration**
-
-</div>
-
-> Upload your `crimson-eyes-of-silence.1920x1080.mp4` file to this repository, then drag the uploaded video into a GitHub issue/comment or discussion to obtain GitHub's generated attachment URL. Replace the placeholder below with that URL.
-
-```text
-🎬 VIDEO DEMO
-
-[ INSERT YOUR GITHUB VIDEO URL HERE ]
-```
-
-<div align="center">
-
-`BUILD` → `TEST` → `BREAK` → `FIX` → `LEARN`
-
-</div>
 
 ---
 
@@ -266,7 +242,7 @@ keep learning
 ```text
 ╔════════════════════════════════════════════════════╗
 ║                                                    ║
-║   "Code. Break. Understand. Build it better."     ║
+║   "Code. Break. Understand. Build it better."      ║
 ║                                                    ║
 ╚════════════════════════════════════════════════════╝
 ```
