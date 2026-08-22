@@ -1,12 +1,17 @@
 # `kdzxy`
 <div align="center">
 
-### my bini
-
-https://github.com/user-attachments/assets/77d74744-46f3-427d-922a-a1be3d089ecf
+<video
+  src="https://github.com/user-attachments/assets/1225eac5-1dcb-484c-8521-5951649af1e6"
+  width="900"
+  autoplay
+  muted
+  loop
+  playsinline
+  controls>
+</video>
 
 </div>
-
 <div align="center">
 
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=24&duration=3000&pause=1000&color=58A6FF&center=true&vCenter=true&width=700&lines=Bot+Developer;Security+Researcher;Bug+Hunter;Node.js+Developer;Linux+Enthusiast" alt="Typing SVG" />
