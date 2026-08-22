@@ -1,17 +1,269 @@
 # `kdzxy`
-<div align="center">
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KDZXY LCD</title>
 
-<video
-  src="https://github.com/user-attachments/assets/1225eac5-1dcb-484c-8521-5951649af1e6"
-  width="900"
-  autoplay
-  muted
-  loop
-  playsinline
-  controls>
-</video>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #050807;
+        font-family: monospace;
+    }
+
+    .lcd {
+        width: min(900px, 94vw);
+        padding: 35px;
+        border: 2px solid #18352a;
+        border-radius: 14px;
+        background:
+            radial-gradient(circle at center, #0b1712 0%, #050807 75%);
+        box-shadow:
+            0 0 30px rgba(0, 255, 120, 0.05),
+            inset 0 0 30px rgba(0, 255, 120, 0.03);
+        overflow: hidden;
+    }
+
+    .screen {
+        display: grid;
+        grid-template-columns: repeat(45, 1fr);
+        grid-template-rows: repeat(18, 1fr);
+        gap: 5px;
+        aspect-ratio: 45 / 18;
+    }
+
+    .pixel {
+        aspect-ratio: 1;
+        border-radius: 3px;
+        background: #0c1914;
+        border: 1px solid #142b22;
+        box-shadow: inset 0 0 3px rgba(0, 255, 120, 0.04);
+        transition:
+            background 0.12s ease,
+            box-shadow 0.12s ease,
+            transform 0.12s ease;
+    }
+
+    .pixel.active {
+        background: #21e879;
+        border-color: #42ff91;
+        box-shadow:
+            0 0 7px rgba(33, 232, 121, 0.7),
+            0 0 16px rgba(33, 232, 121, 0.25),
+            inset 0 0 5px rgba(255, 255, 255, 0.25);
+        transform: scale(1.04);
+    }
+
+    .pixel.fade {
+        background: #123b29;
+        border-color: #1b7047;
+        box-shadow: 0 0 5px rgba(33, 232, 121, 0.2);
+    }
+
+    .label {
+        margin-top: 18px;
+        text-align: center;
+        color: #42ff91;
+        font-size: 13px;
+        letter-spacing: 4px;
+        opacity: 0.7;
+    }
+
+    @media (max-width: 600px) {
+        .lcd {
+            padding: 15px;
+        }
+
+        .screen {
+            gap: 2px;
+        }
+
+        .pixel {
+            border-radius: 1px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="lcd">
+
+    <div class="screen" id="screen"></div>
+
+    <div class="label">
+        LCD // KDZXY
+    </div>
 
 </div>
+
+<script>
+const screen = document.getElementById("screen");
+
+const COLS = 45;
+const ROWS = 18;
+
+const pixels = [];
+
+for (let i = 0; i < COLS * ROWS; i++) {
+    const pixel = document.createElement("div");
+    pixel.className = "pixel";
+
+    screen.appendChild(pixel);
+    pixels.push(pixel);
+}
+
+const font = {
+    K: [
+        "10001",
+        "10010",
+        "10100",
+        "11000",
+        "10100",
+        "10010",
+        "10001"
+    ],
+
+    D: [
+        "11110",
+        "10001",
+        "10001",
+        "10001",
+        "10001",
+        "10001",
+        "11110"
+    ],
+
+    Z: [
+        "11111",
+        "00001",
+        "00010",
+        "00100",
+        "01000",
+        "10000",
+        "11111"
+    ],
+
+    X: [
+        "10001",
+        "10001",
+        "01010",
+        "00100",
+        "01010",
+        "10001",
+        "10001"
+    ],
+
+    Y: [
+        "10001",
+        "10001",
+        "01010",
+        "00100",
+        "00100",
+        "00100",
+        "00100"
+    ]
+};
+
+const word = "KDZXY";
+
+const startRow = 5;
+const startCol = 8;
+
+const activePixels = [];
+
+word.split("").forEach((letter, letterIndex) => {
+
+    const pattern = font[letter];
+
+    const letterStartCol = startCol + letterIndex * 7;
+
+    pattern.forEach((row, r) => {
+
+        [...row].forEach((value, c) => {
+
+            if (value === "1") {
+
+                const gridRow = startRow + r;
+                const gridCol = letterStartCol + c;
+
+                const index =
+                    gridRow * COLS + gridCol;
+
+                activePixels.push(index);
+            }
+
+        });
+
+    });
+
+});
+
+function clearScreen() {
+    pixels.forEach(pixel => {
+        pixel.classList.remove("active");
+        pixel.classList.remove("fade");
+    });
+}
+
+async function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function animate() {
+
+    while (true) {
+
+        clearScreen();
+
+        await sleep(500);
+
+        /*
+         * Kotak hijau muncul satu per satu
+         */
+        for (const index of activePixels) {
+
+            pixels[index].classList.add("active");
+
+            await sleep(28);
+        }
+
+        /*
+         * Tulisan KDZXY bertahan sebentar
+         */
+        await sleep(1400);
+
+        /*
+         * Efek redup sebelum menghilang
+         */
+        activePixels.forEach(index => {
+            pixels[index].classList.remove("active");
+            pixels[index].classList.add("fade");
+        });
+
+        await sleep(350);
+
+        clearScreen();
+
+        await sleep(500);
+    }
+}
+
+animate();
+</script>
+
+</body>
+</html>
 <div align="center">
 
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=24&duration=3000&pause=1000&color=58A6FF&center=true&vCenter=true&width=700&lines=Bot+Developer;Security+Researcher;Bug+Hunter;Node.js+Developer;Linux+Enthusiast" alt="Typing SVG" />
